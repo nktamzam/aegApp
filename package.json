@@ -1,16 +1,18 @@
 {
   "name": "appaeg",
   "version": "1.0.0",
-  "description": "nodejs express mongosee mongodb",
+  "description": "Test app con nodejs express y momgodb",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
    "engines": {
-    "node": "4.0.0"
+    "node": "10.15.3"
   },
   "dependencies": {
-    "express": "^6.4.1"
+    "express": "^4.16.4",
+    "body-parser": "1.18.3",
+     "mongoose": "5.4.22"
   },
   "keywords": [
     "node",
