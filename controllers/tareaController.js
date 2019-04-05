@@ -27,12 +27,14 @@ exports.getTareaByNombre = (req, res) => {
 };
 
 exports.postTarea = (req, res) => {
-    let reqNombre = req.query.nombre;
+    let reqNombre = req.params.nombre;
+    let reqDescripcion = req.params.descripcion;
+    let reqEstado = req.params.estado;
         let nuevaTarea = new Tarea (
             {   
             nombre: reqNombre,
-            descripción: 'descripciosn larga ffsffsfs',
-            estado: true
+            descripción: reqDescripcion,
+            estado: reqEstado
             }
         );
 
