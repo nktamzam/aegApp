@@ -17,4 +17,23 @@ exports.getTareaById = (req, res) => {
     });
 };
 
+exports.postTarea = (req, res) => {
+        let nuevaTarea = new Tarea (
+            {
+            _id: '12345',    
+            nombre: 'tareanew1',
+            descripción: 'descripciosn larga ffsffsfs',
+            estado: true
+            }
+        );
+
+        nuevaTarea.save(function (err) {
+            if (err) {
+                //return next(err);
+                res.send('fallo')
+            }
+            res.send('Tarea creada correctamente')
+        })
+    };
+
 
