@@ -19,9 +19,8 @@ exports.getTareaById = (req, res) => {
 
 exports.postTarea = (req, res) => {
         let nuevaTarea = new Tarea (
-            {
-            _id: '12345',    
-            nombre: 'tareanew1',
+            {   
+            nombre: 'tareanew2',
             descripción: 'descripciosn larga ffsffsfs',
             estado: true
             }

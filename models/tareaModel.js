@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 
 // Creamos el objeto del esquema y sus atributos
 const TareaSchema = Schema({
-   _id: {type: String, required: true},
    nombre: {type: String, required: true},
    descripción: {type: String, required: true},
    estado: Boolean
