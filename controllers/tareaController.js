@@ -17,10 +17,20 @@ exports.getTareaById = (req, res) => {
     });
 };
 
+exports.getTareaByNombre = (req, res) => {
+    let reqNombre = req.params.nombre;
+    Tarea.findOne({nombre: reqNombre}, (err, tarea) => {
+        if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`});
+        if(!tarea) return res.status(404).send({message: `No existe ese tarea`});
+        res.send({tarea: tarea});
+    });
+};
+
 exports.postTarea = (req, res) => {
+    let reqNombre = req.query.nombre;
         let nuevaTarea = new Tarea (
             {   
-            nombre: 'tareanew2',
+            nombre: reqNombre,
             descripción: 'descripciosn larga ffsffsfs',
             estado: true
             }
