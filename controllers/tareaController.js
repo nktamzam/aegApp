@@ -1,50 +1,70 @@
-const Tarea = require('../models/tareaModel');
+const Tarea = require("../models/tareaModel");
 
 exports.getAllTareas = (req, res) => {
-    Tarea.find({}, (err, tareas) => {
-        if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`});
-        if(!tareas) return res.status(404).send({message: `No existen tareas`});
-        res.status(200).send({tareas: tareas});
-    });
+  Tarea.find({}, (err, tareas) => {
+    if (err)
+      return res
+        .status(500)
+        .send({ message: `Error al realizar la petición: ${err}` });
+    if (!tareas) return res.status(404).send({ message: `No existen tareas` });
+    res.status(200).send({ tareas: tareas });
+  });
 };
 
 exports.getTareaById = (req, res) => {
-    let tareaId = req.params.id;
-    Tarea.findOne({_id: tareaId}, (err, tarea) => {
-        if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`});
-        if(!tarea) return res.status(404).send({message: `No existe ese tarea`});
-        res.send({tarea: tarea});
-    });
+  let tareaId = req.params.id;
+  Tarea.findOne({ _id: tareaId }, (err, tarea) => {
+    if (err)
+      return res
+        .status(500)
+        .send({ message: `Error al realizar la petición: ${err}` });
+    if (!tarea) return res.status(404).send({ message: `No existe ese tarea` });
+    tarea.nombre = "eneka";
+    tarea.save;
+
+    res.send({ tarea: tarea });
+  });
+};
+
+exports.updateTareaById = (req, res) => {
+  let tareaId = req.params.id;
+  Tarea.findOne({ _id: tareaId }, (err, tarea) => {
+    if (err)
+      return res
+        .status(500)
+        .send({ message: `Error al realizar la petición: ${err}` });
+    if (!tarea) return res.status(404).send({ message: `No existe ese tarea` });
+    res.send({ tarea: tarea });
+  });
 };
 
 exports.getTareaByNombre = (req, res) => {
-    let reqNombre = req.params.nombre;
-    Tarea.findOne({nombre: reqNombre}, (err, tarea) => {
-        if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`});
-        if(!tarea) return res.status(404).send({message: `No existe ese tarea`});
-        res.send({tarea: tarea});
-    });
+  let reqNombre = req.params.nombre;
+  Tarea.findOne({ nombre: reqNombre }, (err, tarea) => {
+    if (err)
+      return res
+        .status(500)
+        .send({ message: `Error al realizar la petición: ${err}` });
+    if (!tarea) return res.status(404).send({ message: `No existe ese tarea` });
+    res.send({ tarea: tarea });
+  });
 };
 
 exports.postTarea = (req, res) => {
-    let reqNombre = req.params.nombre;
-    let reqDescripcion = req.params.descripcion;
-    let reqEstado = req.params.estado;
-        let nuevaTarea = new Tarea (
-            {   
-            nombre: reqNombre,
-            descripción: reqDescripcion,
-            estado: reqEstado
-            }
-        );
+  let reqNombre = req.params.nombre;
+  let reqDescripcion = req.params.descripcion;
+  let reqEstado = req.params.estado;
+  let nuevaTarea = new Tarea({
+    nombre: reqNombre,
+    descripción: reqDescripcion,
+    estado: reqEstado
+  });
 
-        nuevaTarea.save(function (err) {
-            if (err) {
-                //return next(err);
-                res.send('fallo')
-            }
-            res.send('Tarea creada correctamente')
-        })
-    };
-
-
+  nuevaTarea.save(function(err) {
+    if (err) {
+      //return next(err);
+      res.send("fallo");
+    }
+    res.send("Tarea creada correctamente");
+  });
+};
