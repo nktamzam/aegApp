@@ -11,7 +11,7 @@ exports.getAllTareas = (req, res) => {
   });
 };
 
-exports.getTareaById = (req, res) => {
+exports.updateTareaById = (req, res) => {
   let tareaId = req.params.id;
   Tarea.findOne({ _id: tareaId }, (err, tarea) => {
     if (err)
@@ -19,14 +19,19 @@ exports.getTareaById = (req, res) => {
         .status(500)
         .send({ message: `Error al realizar la petición: ${err}` });
     if (!tarea) return res.status(404).send({ message: `No existe ese tarea` });
-    tarea.nombre = "eneka";
-    tarea.save;
-
-    res.send({ tarea: tarea });
+    tarea.nombre = req.params.nombre;
+    tarea.descripción = req.params.descripcion;
+    tarea.estado = req.params.estado;
+    tarea.save(function(err) {
+      if (err) {
+        res.send("fallo");
+      }
+      res.send("Tarea modificada correctamente");
+    });
   });
 };
 
-exports.updateTareaById = (req, res) => {
+exports.getTareaById = (req, res) => {
   let tareaId = req.params.id;
   Tarea.findOne({ _id: tareaId }, (err, tarea) => {
     if (err)
