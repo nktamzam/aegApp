@@ -56,13 +56,10 @@ exports.getTareaByNombre = (req, res) => {
 };
 
 exports.postTarea = (req, res) => {
-  let reqNombre = req.params.nombre;
-  let reqDescripcion = req.params.descripcion;
-  let reqEstado = req.params.estado;
   let nuevaTarea = new Tarea({
-    nombre: reqNombre,
-    descripción: reqDescripcion,
-    estado: reqEstado
+    nombre: req.params.nombre,
+    descripción: req.params.descripcion,
+    estado: req.params.estado
   });
 
   nuevaTarea.save(function(err) {
