@@ -6,6 +6,7 @@ const tareaController = require("../controllers/tareaController");
 router.post("/nuevo/:nombre/:descripcion/:estado", tareaController.postTarea);
 router.get("/", tareaController.getAllTareas);
 router.get("/:id", tareaController.getTareaById);
+router.delete("/:id", tareaController.delTareaById);
 router.get("/nombre/:nombre", tareaController.getTareaByNombre);
 router.put(
   "/:id/:nombre/:descripcion/:estado",

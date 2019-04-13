@@ -70,3 +70,14 @@ exports.postTarea = (req, res) => {
     res.send("Tarea creada correctamente");
   });
 };
+
+exports.delTareaById = (req, res) => {
+  let tareaId = req.params.id;
+  Tarea.findByIdAndRemove(tareaId, function(err) {
+    if (err) {
+      //return next(err);
+      res.send("fallo");
+    }
+    res.send("Tarea eliminada correctamente");
+  });
+};
